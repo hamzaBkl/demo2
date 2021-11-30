@@ -10,10 +10,10 @@
 <h1>Gestion du Catalogue</h1>
 <ul>
     <li>
-        <a href="hello-servlet">Hello</a>
+        <a href="hello">Helloo</a>
     </li>
     <li>
-        <a href="catalogue">Gestion des Catégories</a>
+        <a href="adminCategory">Gestion des Catégories</a>
     </li>
     <li>
         <a href="admin_produit.jsp">Gestion des Produits</a>

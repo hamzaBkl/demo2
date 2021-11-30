@@ -10,41 +10,42 @@
 </c:if>
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="bundles.Bundle" />
+
 <html>
 <head>
 <title><fmt:message key="categorie.titre.page"/></title>
 </head>
 <body bgcolor="#FFFFFF">
 <h1><fmt:message key="categorie.titre.liste"/></h1>
-<form method='post' action='adminCategorie'>
+<form method='post' action='adminCategory'>
  <table border='1' align='center'>
    <tr>
-    <td>Chercher une catégorie:<input type='text' name='motCle'
-	value='${(empty catForm)?catForm.motCle:""}'></td>
+    <td>Chercher une catégorie:<input type='text' name='keyWord'
+	value='${(not empty categoryForm)?categoryForm.keyWord:""}'></td>
     <td><input type='submit' name='chercheCat' value='Chercher'></td>
    </tr>
  </table>
 </form>
-<form method='post' action='adminCategorie'>
+<form method='post' action='adminCategory'>
   <table border='1' align='center'>
     <tr>
       <td>Id Catégorie<td>Nom Catégorie</td><td>Description</td>
     </tr>
     <tr>
      <td></td>
-     <td><input type='text' name='nomCat'></td>
+     <td><input type='text' name='nameCat'></td>
      <td><input type='text' name='description' size='40'></td>
      <td><input type='submit' name='addCat' value='Ajouter'></td>
     </tr>
-     <c:if test="${not empty catForm}">
+     <c:if test="${not empty categoryForm}">
       
-     <c:forEach items="${catForm.lesCats}" var="cat">
+     <c:forEach items="${categoryForm.categories}" var="cat">
  		<tr>
-		      <td>${cat.id}</td>
-		      <td>${cat.nom}</td>
+		      <td>${cat.idCat}</td>
+		      <td>${cat.nameCat}</td>
 		      <td>${cat.description}</td>
-		      <c:url value="adminCategorie" var="myURL">
-				  <c:param name="idCat" value="${cat.id}"/>
+		      <c:url value="adminCategory" var="myURL">
+				  <c:param name="idCat" value="${cat.idCat}"/>
 				</c:url>
  
 

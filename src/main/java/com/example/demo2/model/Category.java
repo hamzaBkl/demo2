@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name="category")
-@NamedQuery(query = "SELECT c FROM Category c where c.id = :id",name = "find category by id")
+@NamedQuery(query = "SELECT c FROM Category c where c.idCat = :id",name = "find category by id")
 @NamedQuery(name="Category.findAll", query="SELECT c FROM Category c")
 @Proxy(lazy = false)
 
@@ -19,7 +19,7 @@ public class Category implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idCat;
 	
-    private String title;
+    private String nameCat;
     private String description;
 
 	@OneToMany(mappedBy="category")
@@ -36,12 +36,12 @@ public class Category implements Serializable {
         this.idCat = idCat;
     }
 
-    public String getTitle() {
-        return title;
+    public String getNameCat() {
+        return nameCat;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setNameCat(String nameCat) {
+        this.nameCat = nameCat;
     }
 
     public String getDescription() {
@@ -73,5 +73,10 @@ public class Category implements Serializable {
 
 		return product;
 	}
+
+    @Override
+    public String toString() {
+        return "Category : ( "+idCat+" )  "+nameCat+" : "+description;
+    }
 	
 }

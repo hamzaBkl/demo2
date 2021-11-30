@@ -11,28 +11,28 @@ public class Test{
 
 	public static void main(String[] args) {
 		CategoryDAO catDAO = new CategoryDAOImpl();
-		List<com.example.demo2.model.Category> lesCateg;
+		List<Category> categories;
 		Category  uneCategory;
-		lesCateg= catDAO.listCategories();
-		System.out.println("List of all Categorys (_"+lesCateg.size()+"_)");
-		lesCateg.stream().forEach(e -> System.out.println(e));
+		categories= catDAO.listCategories();
+		System.out.println("List of all Categorys (_"+categories.size()+"_)");
+		categories.forEach(System.out::println);
 		
 		uneCategory = new Category();
-		uneCategory.setTitle("Nouvelle Category");
+		uneCategory.setNameCat("Nouvelle Category");
 		uneCategory.setDescription("Nouvelle Category");
 		catDAO.addCategory(uneCategory);
-		
-		lesCateg= catDAO.listCategories();
-		System.out.println("List of all Categorys (_"+lesCateg.size()+"_)");
-		lesCateg.stream().forEach(e -> System.out.println(e));
+
+		categories= catDAO.listCategories();
+		System.out.println("List of all Categorys (_"+categories.size()+"_)");
+		categories.forEach(System.out::println);
 		
 		uneCategory = catDAO.getCategoryById(2);
 		uneCategory.setDescription("Boitier Tower Big or Slim");
 		catDAO.updateCategory(uneCategory);
-		
-		lesCateg= catDAO.listCategories();
-		System.out.println("List of all Categorys (_"+lesCateg.size()+"_)");
-		lesCateg.stream().forEach(e -> System.out.println(e));
+
+		categories= catDAO.listCategories();
+		System.out.println("List of all Categories (_"+categories.size()+"_)");
+		categories.forEach(System.out::println);
 	}
 
 }

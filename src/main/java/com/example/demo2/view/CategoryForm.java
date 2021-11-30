@@ -4,6 +4,7 @@ package com.example.demo2.view;
 import com.example.demo2.model.Category;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class CategoryForm {
@@ -11,7 +12,7 @@ public class CategoryForm {
     private String keyWord="";
     private String nameCat;
     private String description;
-    private ArrayList<Category> categories=new ArrayList<>();
+    private List<Category> categories;
 
     public Long getIdCat() {
         return idCat;
@@ -45,11 +46,11 @@ public class CategoryForm {
         this.description = description;
     }
 
-    public ArrayList<Category> getCategories() {
+    public List<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(ArrayList<Category> categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
 }

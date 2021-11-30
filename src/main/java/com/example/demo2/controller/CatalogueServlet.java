@@ -28,47 +28,51 @@ public class CatalogueServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Créer le bean qui va stocker les données de la requête
-				CategoryForm cf=new CategoryForm();
+				CategoryForm categoryForm=new CategoryForm();
+
 		//Faire appel au modèle pour ajouter une nouvelle catégorie
-				CategoryDAO catal=new CategoryDAOImpl();
+				CategoryDAO dao=new CategoryDAOImpl();
 				if(request.getParameter("addCat")!=null){
+
 		// Socker les données de la reqête dans le bean créé
-					cf.setNameCat(getServletInfo());
-					cf.setDescription(request.getParameter("description"));
+					categoryForm.setNameCat(request.getParameter("nameCat"));
+					categoryForm.setDescription(request.getParameter("description"));
+
 		//Sauvegarder l'objet dans la base de données
 					Category newCat = new Category();
-					newCat.setTitle(request.getParameter("nomCat"));
+					newCat.setNameCat(request.getParameter("nameCat"));
 					newCat.setDescription(request.getParameter("description"));
-					catal.addCategory(newCat);
-		//Récupérer toutes les catégries et les stocker dans le bean
-					cf.setCategories(catal.listCategories());
+					dao.addCategory(newCat);
+
+		//Récupérer toutes les catégories et les stocker dans le bean
+					categoryForm.setCategories(dao.listCategories());
 				}
 				else if(request.getParameter("idCat")!=null){
 		// Socker les données de la reqête dans le bean créé
-					cf.setIdCat(Long.parseLong(request.getParameter("idCat")));
+					categoryForm.setIdCat(Long.parseLong(request.getParameter("idCat")));
 
 		//Supprimer l'objet de la base de données
-					catal.removeCategory((int)cf.getIdCat());
-					cf.setCategories(null);
+					dao.removeCategory(categoryForm.getIdCat());
+					categoryForm.setCategories(dao.listCategories());
 				}
 				else if(request.getParameter("chercheCat")!=null){
 		// Socker les données de la reqête dans le bean créé
-					cf.setKeyWord(request.getParameter("motCle"));
+					categoryForm.setKeyWord(request.getParameter("keyWord"));
 		//Récupérer les catégries par mot clé et les stocker dans le bean
-					cf.setCategories(catal.selectCatByKeyword(cf.getKeyWord()));
+					categoryForm.setCategories(dao.selectCatByKeyword(categoryForm.getKeyWord()));
 				}
 				else{
 		//Récupérer toutes les catégries et les stocker dans le bean
-					cf.setCategories(catal.listCategories());
+					categoryForm.setCategories(dao.listCategories());
 				}
 
 		/* avant de donner la main la page JSP pour afficher
 		 * enregitrer le bean dans la requête ou la session courante
 		 */
 					HttpSession session=request.getSession();
-					session.setAttribute("catForm",cf);
+					session.setAttribute("categoryForm",categoryForm);
 		//Faire une redirection vers la vue JSP pour afficher.
-					response.sendRedirect("Categorys.jsp");
+					response.sendRedirect("admin_categorie.jsp");
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

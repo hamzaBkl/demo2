@@ -1,11 +1,13 @@
 package com.example.demo2.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
 
+import com.example.demo2.util.HibernateUtil;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -48,15 +50,16 @@ public class CategoryDAOImpl implements CategoryDAO {
 		logger.info("Category updated successfully, Category Details="+category);
 	}
 
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Category> listCategorys() {
+	public List<Category> listCategories() {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.beginTransaction();
-		List<Category> CategorysList = session.createQuery("from Category").list();
+		List<Category> CategoriesList = session.createQuery("from Category").list();
 		session.getTransaction().commit();
 		
-		return CategorysList;
+		return CategoriesList;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -64,26 +67,26 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public List<Category> selectCatByKeyword(String keyWord) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.beginTransaction();
-		List<Category> CategorysList = session.createQuery("from Category c WHERE c.nameCat LIKE '%"+keyWord+"%'").list();
+		List<Category> CategoriesList = session.createQuery("from Category c WHERE c.nameCat LIKE '%"+keyWord+"%'").list();
 		session.getTransaction().commit();
 		
-		return CategorysList;
+		return CategoriesList;
 	}
 	@Override
-	public Category getCategoryById(int id) {
+	public Category getCategoryById(long id) {
 		Session session = this.sessionFactory.getCurrentSession();	
 		session.beginTransaction();
-		Category category = (Category) session.load(Category.class, Integer.valueOf(id));
+		Category category = session.load(Category.class, id);
 		session.getTransaction().commit();
 		//logger.info("Category loaded successfully, Category details="+category);
 		return category;
 	}
 
 	@Override
-	public void removeCategory(int id) {
+	public void removeCategory(long id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.beginTransaction();
-		Category category = (Category) session.load(Category.class, Integer.valueOf(id));
+		Category category = session.load(Category.class, id);
 		
 		if(null != category){
 			session.delete(category);

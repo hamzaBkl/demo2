@@ -2,9 +2,9 @@ package com.example.demo2;
 
 import java.io.*;
 import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.annotation.WebServlet;
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
+@WebServlet("/hello")
 public class HelloServlet extends HttpServlet {
     private String message;
 

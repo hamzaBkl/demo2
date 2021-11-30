@@ -65,7 +65,7 @@ public class Catalog {
             while (resultSet.next()){
                 Category category=new Category();
                 category.setIdCat(resultSet.getLong("idCategory"));
-                category.setTitle(resultSet.getString("nameCategory"));
+                category.setNameCat(resultSet.getString("nameCategory"));
                 category.setDescription(resultSet.getString("description"));
                 categories.add(category);
             }
