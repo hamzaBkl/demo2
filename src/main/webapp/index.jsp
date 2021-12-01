@@ -16,7 +16,7 @@
         <a href="adminCategory">Gestion des Catégories</a>
     </li>
     <li>
-        <a href="admin_produit.jsp">Gestion des Produits</a>
+        <a href="adminProduct">Gestion des Produits</a>
     </li>
 </ul>
 </body>

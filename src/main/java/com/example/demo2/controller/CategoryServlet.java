@@ -17,11 +17,11 @@ import com.example.demo2.view.CategoryForm;
 
 
 @WebServlet("/adminCategory")
-public class CatalogueServlet extends HttpServlet {
+public class CategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
-    public CatalogueServlet() {
+    public CategoryServlet() {
         super();
     }
 
@@ -34,7 +34,7 @@ public class CatalogueServlet extends HttpServlet {
 				CategoryDAO dao=new CategoryDAOImpl();
 				if(request.getParameter("addCat")!=null){
 
-		// Socker les données de la reqête dans le bean créé
+		// Stocker les données de la reqête dans le bean créé
 					categoryForm.setNameCat(request.getParameter("nameCat"));
 					categoryForm.setDescription(request.getParameter("description"));
 

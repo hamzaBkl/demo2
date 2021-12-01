@@ -1,17 +1,13 @@
 package com.example.demo2.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.naming.InitialContext;
 
 import com.example.demo2.util.HibernateUtil;
-import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Example;
 
 import com.example.demo2.dao.CategoryDAO;
 import com.example.demo2.model.Category;
@@ -58,7 +54,6 @@ public class CategoryDAOImpl implements CategoryDAO {
 		session.beginTransaction();
 		List<Category> CategoriesList = session.createQuery("from Category").list();
 		session.getTransaction().commit();
-		
 		return CategoriesList;
 	}
 

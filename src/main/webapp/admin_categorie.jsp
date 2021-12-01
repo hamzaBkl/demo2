@@ -3,20 +3,36 @@
 <%@ page import="com.example.demo2.model.*" %>
 <%@ page import="com.example.demo2.view.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:if test="${not empty param.language}">
-  <c:set var="language" value="${param.language}" scope="session"/>
+    <c:set var="language" value="${param.language}" scope="session"/>
 </c:if>
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="bundles.Bundle" />
 
 <html>
 <head>
-<title><fmt:message key="categorie.titre.page"/></title>
+<title><fmt:message key="categories.titre.page"/></title>
 </head>
 <body bgcolor="#FFFFFF">
-<h1><fmt:message key="categorie.titre.liste"/></h1>
+<c:url value="" var="lngFr">
+    <c:param name="language" value="fr" />
+</c:url>
+
+<c:url value="" var="lngEn">
+    <c:param name="language" value="en" />
+</c:url>
+
+<c:url value="" var="lngEs">
+    <c:param name="language" value="es" />
+</c:url>
+
+<p align="right">
+    <a href="<c:out value="${lngFr}" />">FR</a>
+    <a href="<c:out value="${lngEn}" />">EN</a>
+    <a href="<c:out value="${lngEs}" />">ES</a>
+</p>
+<h1><fmt:message key="categories.titre.liste"/></h1>
 <form method='post' action='adminCategory'>
  <table border='1' align='center'>
    <tr>
@@ -26,6 +42,7 @@
    </tr>
  </table>
 </form>
+
 <form method='post' action='adminCategory'>
   <table border='1' align='center'>
     <tr>

@@ -15,7 +15,6 @@ public class Product implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idProduct;
-	
     private String designation;
     private Boolean selected;
     private Double price;
